@@ -1,9 +1,7 @@
 package tables;
 
-import db.IDBExecutor;
 import db.PostGreSqlDBExecutor;
 import dob.AObject;
-import dob.Group;
 import dob.Student;
 
 import java.util.ArrayList;

@@ -2,7 +2,6 @@ package tables;
 
 import db.IDBExecutor;
 import dob.AObject;
-import dob.Student;
 
 import java.util.List;
 

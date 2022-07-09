@@ -7,7 +7,6 @@ public class Curator extends AObject{
     }
 
     public Curator(String fio) {
-        super(0);
         this.fio = fio;
     }
 

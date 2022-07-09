@@ -8,7 +8,6 @@ public class Group extends AObject {
     }
 
     public Group(String name, int id_curator) {
-        super(0);
         this.name = name;
         this.id_curator = id_curator;
     }

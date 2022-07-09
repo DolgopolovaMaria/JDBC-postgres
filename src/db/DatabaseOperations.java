@@ -42,10 +42,24 @@ public class DatabaseOperations {
         groupTable.insertValue(new Group("Group3", 3));
 
         studentTable.insertValue(new Student("Иванов Иван Иванович", "m", 1));
-        studentTable.insertValue(new Student("Агеева Ада", "w", 2));
+        studentTable.insertValue(new Student("Семенов Семен Семенович", "m", 1));
+        studentTable.insertValue(new Student("Петров Петр Петрович", "m", 1));
+        studentTable.insertValue(new Student("Алексеев Алексей Алексеевич", "m", 1));
+        studentTable.insertValue(new Student("Павлов Павел Павлович", "m", 1));
+        studentTable.insertValue(new Student("Иванова Светлана Дмитриевна", "w", 2));
+        studentTable.insertValue(new Student("Котова Татьяна Дмитриевна", "w", 2));
+        studentTable.insertValue(new Student("Кирдяева Виктория Владимировна", "w", 2));
+        studentTable.insertValue(new Student("Курьез Виктория Александровна", "w", 2));
+        studentTable.insertValue(new Student("Дитковскя Анна Сергеевна", "w", 2));
+        studentTable.insertValue(new Student("Агеева Ада", "w", 3));
+        studentTable.insertValue(new Student("Николай", "m", 3));
+        studentTable.insertValue(new Student("Гунова Анна", "w", 3));
+        studentTable.insertValue(new Student("Иванова Любовь", "w", 3));
+        studentTable.insertValue(new Student("Долгополова Татьяна", "w", 3));
     }
 
     public void printAllValues(){
+        System.out.println("All values in all tables:");
         List<AObject> students = studentTable.list();
         Student.printList(students);
         System.out.println();

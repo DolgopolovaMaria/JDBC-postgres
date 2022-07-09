@@ -3,7 +3,6 @@ package tables;
 import db.PostGreSqlDBExecutor;
 import dob.AObject;
 import dob.Curator;
-import dob.Student;
 
 import java.util.ArrayList;
 import java.util.List;

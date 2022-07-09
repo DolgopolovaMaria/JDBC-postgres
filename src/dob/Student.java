@@ -1,9 +1,5 @@
 package dob;
 
-import tables.GroupTable;
-
-import java.util.List;
-
 public class Student extends AObject {
   public Student(int id, String fio, String sex, int idGroup) {
     super(id);
@@ -13,7 +9,6 @@ public class Student extends AObject {
   }
 
   public Student(String fio, String sex, int idGroup) {
-    super(0);
     this.fio = fio;
     this.sex = sex;
     this.idGroup = idGroup;
