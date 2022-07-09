@@ -62,20 +62,60 @@ public class DatabaseOperations {
     public void printStudents(){
         System.out.println("Students with groups and curators:");
         List<Student> students = studentTable.list();
-        for (Student s: students){
-            int groupId = s.getIdGroup();
-            Group group = (Group) groupTable.getById(groupId);
-            String groupName = group.getName();
-            Curator curator = (Curator) curatorTable.getById(group.getId_curator());
-            String curatorName = curator.getFio();
-            System.out.printf("Student %s: FIO = %s, sex = %s, group = %s, curator = %s", s.getId(), s.getFio(), s.getSex(), groupName, curatorName);
-            System.out.println();
-        }
+        printListStudentsWithAllInformation(students);
         System.out.println();
     }
 
     public void printCountStudents(){
         System.out.println("Students count: " + studentTable.getCountValues());
         System.out.println();
+    }
+
+    public void printGirlsStudents(){
+        System.out.println("Girls:");
+        List<Student> students = studentTable.getStudentsBySex("w");
+        printListStudentsWithAllInformation(students);
+        System.out.println();
+    }
+
+    public void printGroupStudents(String group){
+        System.out.printf("Students from %s group (using nested queries):", group);
+        System.out.println();
+        List<Student> students = studentTable.getStudentsByGroup(group);
+        printListStudentsWithAllInformation(students);
+        System.out.println();
+    }
+
+    public void printGroupWithCurators(){
+        System.out.println("Groups with curators:");
+        List<Group> groups = groupTable.list();
+        for (Group g: groups){
+            int curatorId = g.getId_curator();
+            Curator curator = (Curator) curatorTable.getById(curatorId);
+            String curatorName = curator.getFio();
+            System.out.printf("Group = %s, curator = %s", g.getName(), curatorName);
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    public void updateCurator(int idGroup, int idCurator){
+        System.out.printf("Update group %s (set curator = %s)", idGroup, idCurator);
+        System.out.println();
+        groupTable.updateCurator(idGroup, idCurator);
+        System.out.println("New groups values:");
+        printGroupWithCurators();
+    }
+
+    private void printListStudentsWithAllInformation(List<Student> students){
+        for (Student s: students){
+            int groupId = s.getIdGroup();
+            Group group = (Group) groupTable.getById(groupId);
+            String groupName = group.getName();
+            Curator curator = (Curator) curatorTable.getById(group.getId_curator());
+            String curatorName = curator.getFio();
+            System.out.printf("FIO = %s, sex = %s, group = %s, curator = %s", s.getFio(), s.getSex(), groupName, curatorName);
+            System.out.println();
+        }
     }
 }

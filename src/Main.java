@@ -16,6 +16,10 @@ public class Main {
     databaseOperations.fillTables();
     databaseOperations.printStudents();
     databaseOperations.printCountStudents();
+    databaseOperations.printGirlsStudents();
+    databaseOperations.printGroupStudents("Group1");
+    databaseOperations.printGroupWithCurators();
+    databaseOperations.updateCurator(1, 4);
   }
 
 }

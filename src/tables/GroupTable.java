@@ -53,4 +53,10 @@ public class GroupTable extends ATable {
 
         getIdbExecutor().execute(query);
     }
+
+    public void updateCurator(int idGroup, int idCurator){
+        String query = String.format("update %s set id_curator=%s where id=%s", getTableName(), idCurator, idGroup);
+
+        getIdbExecutor().execute(query);
+    }
 }

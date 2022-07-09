@@ -25,21 +25,19 @@ public class StudentTable extends ATable {
   public List list() {
     String listStudentsQuery = String.format("select * from %s", getTableName());
 
-    List<Student> students = new ArrayList<>();
+    return selectQuery(listStudentsQuery);
+  }
 
-    List<Map<String, String>> result = getIdbExecutor().executeWithResult(listStudentsQuery);
+  public List getStudentsBySex(String sex) {
+    String listStudentsQuery = String.format("select * from %s where sex='%s'", getTableName(), sex);
 
-    for(Map<String, String> res: result) {
-      students.add(
-          new Student(
-                  Integer.parseInt(res.get("id")),
-              res.get("fio"),
-              res.get("sex"),
-              Integer.parseInt(res.get("id_group"))
-          )
-      );
-    }
-    return students;
+    return selectQuery(listStudentsQuery);
+  }
+
+  public List getStudentsByGroup(String groupName) {
+    String listStudentsQuery = String.format("select * from %s where id_group=(select id from group_students where name='%s')", getTableName(), groupName);
+
+    return selectQuery(listStudentsQuery);
   }
 
   public int getCountValues() {
@@ -67,5 +65,23 @@ public class StudentTable extends ATable {
     String query = String.format("insert into %s (fio, sex, id_group) values ('%s', '%s', %s)", getTableName(), student.getFio(), student.getSex(), student.getIdGroup());
 
     getIdbExecutor().execute(query);
+  }
+
+  private List selectQuery(String query){
+    List<Student> students = new ArrayList<>();
+
+    List<Map<String, String>> result = getIdbExecutor().executeWithResult(query);
+
+    for(Map<String, String> res: result) {
+      students.add(
+              new Student(
+                      Integer.parseInt(res.get("id")),
+                      res.get("fio"),
+                      res.get("sex"),
+                      Integer.parseInt(res.get("id_group"))
+              )
+      );
+    }
+    return students;
   }
 }
